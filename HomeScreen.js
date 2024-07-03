@@ -12,6 +12,8 @@ import Menu from "./assets/Menu.png";
 import Logo from "./assets/Logo.png";
 import Search from "./assets/Search.png";
 import shoppingBag from "./assets/shoppingBag.png";
+import Listview from "./assets/Listview.png";
+import Filter from "./assets/Filter.png";
 
 const products = [
   {
@@ -63,6 +65,18 @@ const HomeScreen = ({ navigation }) => {
           <Image source={shoppingBag} />
         </View>
       </View>
+      <View style={styles.storyContainer}>
+        <Text style={styles.storyText}>OUR STORY</Text>
+        <View style={styles.actionContainer}>
+          <View style={styles.actionBackgroundList}>
+            <Image source={Listview} style={styles.listImage} />
+          </View>
+          <View style={styles.actionBackground}>
+            <Image source={Filter} style={styles.filterImage} />
+          </View>
+        </View>
+      </View>
+
       <FlatList
         data={products}
         keyExtractor={(item) => item.id}
@@ -77,7 +91,6 @@ const HomeScreen = ({ navigation }) => {
           </View>
         )}
       />
-      
     </View>
   );
 };
@@ -104,8 +117,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   logo: {
-    display: 'flex',
-    left: 20
+    display: "flex",
+    left: 20,
   },
   product: {
     flex: 1,
@@ -121,15 +134,50 @@ const styles = StyleSheet.create({
     height: 200,
     marginBottom: 10,
   },
-  cartButton: {
-    backgroundColor: "#000",
-    padding: 10,
+  storyContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    margin: 10,
+  },
+  storyText: {
+    fontSize: 24,
+    fontFamily: "Arial",
+    letterSpacing: 6,
+  },
+  actionContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: 'auto',
+  },
+  listImage: {
+    width: 28,
+    height: 28,
+  },
+  filterImage: {
+    width: 28,
+    height: 28
+  },
+  actionBackground: {
+    width: 40,
+    height: 40,
+    borderRadius: 30,
+    backgroundColor: "#ECECEC",
+    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: "center",
   },
-  cartButtonText: {
-    color: "#fff",
-    fontSize: 18,
-  },
+  actionBackgroundList: {
+    width: 40,
+    height: 40,
+    borderRadius: 30,
+    backgroundColor: "#ECECEC",
+    justifyContent: 'space-between',
+    justifyContent: 'center',
+    alignItems: "center",
+    marginRight: 10
+  }
 });
 
 export default HomeScreen;

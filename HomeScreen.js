@@ -13,36 +13,36 @@ import Logo from "./assets/Logo.png";
 import Search from "./assets/Search.png";
 import shoppingBag from "./assets/shoppingBag.png";
 
-// const products = [
-//   {
-//     id: "1",
-//     name: "Office Wear",
-//     description: "reversible angora cardigan",
-//     price: "$120",
-//     image: require("./assets/dress1.png"),
-//   },
-//   {
-//     id: "2",
-//     name: "Black",
-//     description: "reversible angora cardigan",
-//     price: "$120",
-//     image: require("./assets/dress2.png"),
-//   },
-//   {
-//     id: "3",
-//     name: "Church Wear",
-//     description: "reversible angora cardigan",
-//     price: "$120",
-//     image: require("./assets/dress3.png"),
-//   },
-//   {
-//     id: "4",
-//     name: "Lamerei",
-//     description: "reversible angora cardigan",
-//     price: "$120",
-//     image: require("./assets/dress4.png"),
-//   },
-// ];
+const products = [
+  {
+    id: "1",
+    name: "Office Wear",
+    description: "reversible angora cardigan",
+    price: "$120",
+    image: require("./assets/dress1.png"),
+  },
+  {
+    id: "2",
+    name: "Black",
+    description: "reversible angora cardigan",
+    price: "$120",
+    image: require("./assets/dress2.png"),
+  },
+  {
+    id: "3",
+    name: "Church Wear",
+    description: "reversible angora cardigan",
+    price: "$120",
+    image: require("./assets/dress3.png"),
+  },
+  {
+    id: "4",
+    name: "Lamerei",
+    description: "reversible angora cardigan",
+    price: "$120",
+    image: require("./assets/dress4.png"),
+  },
+];
 
 const HomeScreen = ({ navigation }) => {
   // const [cart, setCart] = useState([]);
@@ -63,7 +63,7 @@ const HomeScreen = ({ navigation }) => {
           <Image source={shoppingBag} />
         </View>
       </View>
-      {/* <FlatList
+      <FlatList
         data={products}
         keyExtractor={(item) => item.id}
         numColumns={2}
@@ -73,10 +73,10 @@ const HomeScreen = ({ navigation }) => {
             <Text>{item.name}</Text>
             <Text>{item.description}</Text>
             <Text>{item.price}</Text>
-            <Button title="Add to Cart" onPress={() => addToCart(item)} />
+            {/* <Button title="Add to Cart" onPress={() => addToCart(item)} /> */}
           </View>
         )}
-      /> */}
+      />
       
     </View>
   );
@@ -107,29 +107,29 @@ const styles = StyleSheet.create({
     display: 'flex',
     left: 20
   },
-  // product: {
-  //   flex: 1,
-  //   margin: 10,
-  //   padding: 10,
-  //   borderWidth: 1,
-  //   borderColor: "#ddd",
-  //   borderRadius: 5,
-  //   alignItems: "center",
-  // },
-  // image: {
-  //   width: "100%",
-  //   height: 200,
-  //   marginBottom: 10,
-  // },
-  // cartButton: {
-  //   backgroundColor: "#000",
-  //   padding: 10,
-  //   alignItems: "center",
-  // },
-  // cartButtonText: {
-  //   color: "#fff",
-  //   fontSize: 18,
-  // },
+  product: {
+    flex: 1,
+    margin: 10,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: "#ddd",
+    borderRadius: 5,
+    alignItems: "center",
+  },
+  image: {
+    width: "100%",
+    height: 200,
+    marginBottom: 10,
+  },
+  cartButton: {
+    backgroundColor: "#000",
+    padding: 10,
+    alignItems: "center",
+  },
+  cartButtonText: {
+    color: "#fff",
+    fontSize: 18,
+  },
 });
 
 export default HomeScreen;

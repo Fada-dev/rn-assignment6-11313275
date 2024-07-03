@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, FlatList, StyleSheet, Button, Image, TouchableOpacity } from "react-native";
+import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from "react-native";
 import remove from './assets/remove.png';
+import Logo from './assets/Logo.png';
+import Search from './assets/Search.png';
+
 
 const CartScreen = ({ route, navigation }) => {
   const { cart } = route.params;
@@ -16,7 +19,10 @@ const CartScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-    
+      <View style={styles.headerContainer}>
+        <Image source={Logo} />
+        <Image source={Search} style={styles.searchIcon} />
+      </View>
       <FlatList
         data={cartItems}
         keyExtractor={(item) => item.id}
@@ -49,18 +55,26 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
   },
+  headerContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
+  searchIcon: {
+    position: 'relative',
+    left: 135
+  },
   product: {
     // margin: 10,
     padding: 10,
-    borderWidth: 1,
-    borderColor: "#ddd",
+    // borderWidth: 1,
+    // borderColor: "#ddd",
     // borderRadius: 5,
     alignItems: "center",
     flexDirection: "row",
   },
   image: {
-    width: 150,
-    height: 200,
+    objectFit: 'contain',
     marginBottom: 10,
   },
   cartDescription: {
@@ -78,7 +92,7 @@ const styles = StyleSheet.create({
   itemName: {
     fontSize: 13,
     color: "gray",
-    lineHeight: 20,
+    lineHeight: 35,
     textTransform: 'capitalize'
   },
   itemPrice: {

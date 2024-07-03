@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, FlatList, StyleSheet, Button, Image } from "react-native";
+import { View, Text, FlatList, StyleSheet, Button, Image, TouchableOpacity } from "react-native";
 import remove from './assets/remove.png'
 
 const CartScreen = ({ route, navigation }) => {
@@ -27,7 +27,10 @@ const CartScreen = ({ route, navigation }) => {
               <Text style={styles.itemName}>{item.description}</Text>
               <Text style={styles.itemPrice}>{item.price}</Text>
             </View>
-            <Image source={remove} style={styles.removeIcon} />
+            <TouchableOpacity onPress={() => removeFromCart(item)} style={styles.removeIcon} >
+            <Image source={remove}   />
+
+            </TouchableOpacity>
             {/* <Button title="Remove from Cart" onPress={() => removeFromCart(item)} /> */}
           </View>
         )}
@@ -75,6 +78,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: "gray",
     lineHeight: 20,
+    textTransform: 'capitalize'
   },
   itemPrice: {
     fontSize: 20,

@@ -5,7 +5,6 @@ import {
   FlatList,
   StyleSheet,
   Image,
-  Button,
   TouchableOpacity,
 } from "react-native";
 import Menu from "./assets/Menu.png";
@@ -117,9 +116,11 @@ const HomeScreen = ({ navigation }) => {
         renderItem={({ item }) => (
           <View style={styles.product}>
             <Image source={item.image} style={styles.image} />
-            <Text style={styles.itemType}>{item.name}</Text>
-            <Text style={styles.itemName}>{item.description}</Text>
-            <Text style={styles.itemPrice}>{item.price}</Text>
+            <View style={styles.description}>
+              <Text style={styles.itemType}>{item.name}</Text>
+              <Text style={styles.itemName}>{item.description}</Text>
+              <Text style={styles.itemPrice}>{item.price}</Text>
+            </View>
             <TouchableOpacity style={styles.addIconContainer} onPress={() => addToCart(item)}>
               <Image source={add_circle} style={styles.addIcon} />
             </TouchableOpacity>
@@ -158,14 +159,13 @@ const styles = StyleSheet.create({
   product: {
     flex: 1,
     margin: 10,
-    width: 220,
-    borderRadius: 5,
-    alignItems: "flex-start",
+    marginBottom: -45, 
   },
   image: {
     width: "100%",
     height: 300,
     marginBottom: 10,
+    objectFit: 'contain'
   },
   storyContainer: {
     display: "flex",
@@ -184,20 +184,15 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     width: "auto",
   },
-  listImage: {
-    width: 28,
-    height: 28,
-  },
-  filterImage: {
-    width: 28,
-    height: 28,
+  description: {
+    position: 'relative',
+    top: -30
   },
   actionBackground: {
     width: 40,
     height: 40,
     borderRadius: 30,
     backgroundColor: "#ECECEC",
-    justifyContent: "space-between",
     justifyContent: "center",
     alignItems: "center",
   },
@@ -206,7 +201,6 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 30,
     backgroundColor: "#ECECEC",
-    justifyContent: "space-between",
     justifyContent: "center",
     alignItems: "center",
     marginRight: 10,
@@ -227,16 +221,8 @@ const styles = StyleSheet.create({
   },
   addIconContainer: {
     position: "absolute",
-    bottom: 77,
-    right: -5,
-    width: 40,
-    height: 40,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  addIcon: {
-    width: 24,
-    height: 24,
+    bottom: 115,
+    right: 5,
   },
 });
 

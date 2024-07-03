@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, FlatList, StyleSheet, Button, Image, TouchableOpacity } from "react-native";
-import remove from './assets/remove.png'
+import remove from './assets/remove.png';
 
 const CartScreen = ({ route, navigation }) => {
   const { cart } = route.params;
@@ -16,6 +16,7 @@ const CartScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
+    
       <FlatList
         data={cartItems}
         keyExtractor={(item) => item.id}

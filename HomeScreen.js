@@ -84,9 +84,9 @@ const HomeScreen = ({ navigation }) => {
         renderItem={({ item }) => (
           <View style={styles.product}>
             <Image source={item.image} style={styles.image} />
-            <Text>{item.name}</Text>
-            <Text>{item.description}</Text>
-            <Text>{item.price}</Text>
+            <Text style={styles.itemType}>{item.name}</Text>
+            <Text style={styles.itemName}>{item.description}</Text>
+            <Text style={styles.itemPrice}>{item.price}</Text>
             {/* <Button title="Add to Cart" onPress={() => addToCart(item)} /> */}
           </View>
         )}
@@ -123,15 +123,15 @@ const styles = StyleSheet.create({
   product: {
     flex: 1,
     margin: 10,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: "#ddd",
+    width: 220,
+    // borderWidth: 1,
+    // borderColor: "#ddd",
     borderRadius: 5,
-    alignItems: "center",
+    alignItems: 'flex-start',
   },
   image: {
-    width: "100%",
-    height: 200,
+    width: '100%',
+    height: 300,
     marginBottom: 10,
   },
   storyContainer: {
@@ -177,7 +177,25 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: "center",
     marginRight: 10
+  },
+  itemType: {
+    fontSize: 16,
+    fontFamily: 'Arial',
+    lineHeight: 20
+  },
+  itemName: {
+    fontSize: 13,
+    color: 'gray',
+    lineHeight: 20
+  },
+  itemPrice: {
+    fontSize: 20,
+    color: '#FFB668',
+
   }
+
+
+
 });
 
 export default HomeScreen;

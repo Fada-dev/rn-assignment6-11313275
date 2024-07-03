@@ -14,8 +14,7 @@ import Search from "./assets/Search.png";
 import shoppingBag from "./assets/shoppingBag.png";
 import Listview from "./assets/Listview.png";
 import Filter from "./assets/Filter.png";
-import add_circle from './assets/add_circle.png'
- 
+import add_circle from "./assets/add_circle.png";
 
 const products = [
   {
@@ -46,14 +45,42 @@ const products = [
     price: "$120",
     image: require("./assets/dress4.png"),
   },
+  {
+    id: "5",
+    name: "Lamerei",
+    description: "reversible angora cardigan",
+    price: "$120",
+    image: require("./assets/dress5.png"),
+  },
+  {
+    id: "6",
+    name: "Lamerei",
+    description: "reversible angora cardigan",
+    price: "$120",
+    image: require("./assets/dress6.png"),
+  },
+  {
+    id: "7",
+    name: "Lamerei",
+    description: "reversible angora cardigan",
+    price: "$120",
+    image: require("./assets/dress7.png"),
+  },
+  {
+    id: "8",
+    name: "Lamerei",
+    description: "reversible angora cardigan",
+    price: "$120",
+    image: require("./assets/dress3.png"),
+  },
 ];
 
 const HomeScreen = ({ navigation }) => {
-  // const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState([]);
 
-  // const addToCart = (product) => {
-  //   setCart([...cart, product]);
-  // };
+  const addToCart = (product) => {
+    setCart([...cart, product]);
+  };
 
   return (
     <View style={styles.container}>
@@ -63,8 +90,12 @@ const HomeScreen = ({ navigation }) => {
           <Image source={Logo} />
         </View>
         <View style={styles.searchContainer}>
-          <Image source={Search} styles={styles.searchButton} />
-          <Image source={shoppingBag} />
+          <TouchableOpacity>
+            <Image source={Search} styles={styles.searchButton} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Cart', { cart })}>
+            <Image source={shoppingBag} />
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.storyContainer}>
@@ -89,8 +120,7 @@ const HomeScreen = ({ navigation }) => {
             <Text style={styles.itemType}>{item.name}</Text>
             <Text style={styles.itemName}>{item.description}</Text>
             <Text style={styles.itemPrice}>{item.price}</Text>
-            {/* <Button title="Add to Cart" onPress={() => addToCart(item)} /> */}
-            <TouchableOpacity style={styles.addIconContainer}>
+            <TouchableOpacity style={styles.addIconContainer} onPress={() => addToCart(item)}>
               <Image source={add_circle} style={styles.addIcon} />
             </TouchableOpacity>
           </View>
@@ -129,13 +159,11 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 10,
     width: 220,
-    // borderWidth: 1,
-    // borderColor: "#ddd",
     borderRadius: 5,
-    alignItems: 'flex-start',
+    alignItems: "flex-start",
   },
   image: {
-    width: '100%',
+    width: "100%",
     height: 300,
     marginBottom: 10,
   },
@@ -154,7 +182,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    width: 'auto',
+    width: "auto",
   },
   listImage: {
     width: 28,
@@ -162,15 +190,15 @@ const styles = StyleSheet.create({
   },
   filterImage: {
     width: 28,
-    height: 28
+    height: 28,
   },
   actionBackground: {
     width: 40,
     height: 40,
     borderRadius: 30,
     backgroundColor: "#ECECEC",
-    justifyContent: 'space-between',
-    justifyContent: 'center',
+    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center",
   },
   actionBackgroundList: {
@@ -178,40 +206,38 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 30,
     backgroundColor: "#ECECEC",
-    justifyContent: 'space-between',
-    justifyContent: 'center',
+    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center",
-    marginRight: 10
+    marginRight: 10,
   },
   itemType: {
     fontSize: 16,
-    fontFamily: 'Arial',
-    lineHeight: 20
+    fontFamily: "Arial",
+    lineHeight: 20,
   },
   itemName: {
     fontSize: 13,
-    color: 'gray',
-    lineHeight: 20
+    color: "gray",
+    lineHeight: 20,
   },
   itemPrice: {
     fontSize: 20,
-    color: '#FFB668',
+    color: "#FFB668",
   },
   addIconContainer: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 77,
     right: -5,
     width: 40,
     height: 40,
-    // borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   addIcon: {
     width: 24,
     height: 24,
   },
-
 });
 
 export default HomeScreen;

@@ -14,6 +14,8 @@ import Search from "./assets/Search.png";
 import shoppingBag from "./assets/shoppingBag.png";
 import Listview from "./assets/Listview.png";
 import Filter from "./assets/Filter.png";
+import add_circle from './assets/add_circle.png'
+ 
 
 const products = [
   {
@@ -88,6 +90,9 @@ const HomeScreen = ({ navigation }) => {
             <Text style={styles.itemName}>{item.description}</Text>
             <Text style={styles.itemPrice}>{item.price}</Text>
             {/* <Button title="Add to Cart" onPress={() => addToCart(item)} /> */}
+            <TouchableOpacity style={styles.addIconContainer}>
+              <Image source={add_circle} style={styles.addIcon} />
+            </TouchableOpacity>
           </View>
         )}
       />
@@ -191,10 +196,21 @@ const styles = StyleSheet.create({
   itemPrice: {
     fontSize: 20,
     color: '#FFB668',
-
-  }
-
-
+  },
+  addIconContainer: {
+    position: 'absolute',
+    bottom: 77,
+    right: -5,
+    width: 40,
+    height: 40,
+    // borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  addIcon: {
+    width: 24,
+    height: 24,
+  },
 
 });
 

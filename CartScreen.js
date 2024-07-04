@@ -4,6 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import remove from './assets/remove.png';
 import Logo from './assets/Logo.png';
 import Search from './assets/Search.png';
+import underline from './assets/underline.png'
 
 const CartScreen = ({ route, navigation }) => {
   const { cart } = route.params;
@@ -43,7 +44,9 @@ const CartScreen = ({ route, navigation }) => {
       </View>
       <View style={styles.checkContainer}>
         <Text style={styles.checkText}>Checkout</Text>
+        <Image source={underline} style={styles.undelineImg} />
       </View>
+
       <FlatList
         data={cartItems}
         keyExtractor={(item) => item.id}
@@ -84,7 +87,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     marginTop: 30,
-    marginBottom: 20
+    marginBottom: 30
   },
   checkText: {
     textTransform: 'uppercase',
@@ -92,6 +95,14 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontFamily: "Arial",
     letterSpacing: 6,
+  },
+  undelineImg: {
+    width: 198,
+    height: 15,
+    position: 'absolute',
+    top: 28,
+    left: 95,
+    opacity: 0.4
   },
   product: {
     padding: 10,

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -7,6 +7,7 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import Menu from "./assets/Menu.png";
 import Logo from "./assets/Logo.png";
 import Search from "./assets/Search.png";
@@ -77,8 +78,30 @@ const products = [
 const HomeScreen = ({ navigation }) => {
   const [cart, setCart] = useState([]);
 
-  const addToCart = (product) => {
-    setCart([...cart, product]);
+  useEffect(() => {
+    const loadCart = async () => {
+      try {
+        const storedCart = await AsyncStorage.getItem("cart");
+        if (storedCart) {
+          setCart(JSON.parse(storedCart));
+        }
+      } catch (error) {
+        console.error("Failed to load cart from local storage", error);
+      }
+    };
+
+    loadCart();
+  }, []);
+
+  const addToCart = async (product) => {
+    const updatedCart = [...cart, product];
+    setCart(updatedCart);
+
+    try {
+      await AsyncStorage.setItem("cart", JSON.stringify(updatedCart));
+    } catch (error) {
+      console.error("Failed to save cart to local storage", error);
+    }
   };
 
   return (

@@ -1,20 +1,38 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import remove from './assets/remove.png';
 import Logo from './assets/Logo.png';
 import Search from './assets/Search.png';
-
 
 const CartScreen = ({ route, navigation }) => {
   const { cart } = route.params;
   const [cartItems, setCartItems] = useState(cart);
 
   useEffect(() => {
-    setCartItems(cart);
-  }, [cart]);
+    const loadCart = async () => {
+      try {
+        const storedCart = await AsyncStorage.getItem("cart");
+        if (storedCart) {
+          setCartItems(JSON.parse(storedCart));
+        }
+      } catch (error) {
+        console.error("Failed to load cart from local storage", error);
+      }
+    };
 
-  const removeFromCart = (product) => {
-    setCartItems(cartItems.filter((item) => item.id !== product.id));
+    loadCart();
+  }, []);
+
+  const removeFromCart = async (product) => {
+    const updatedCart = cartItems.filter((item) => item.id !== product.id);
+    setCartItems(updatedCart);
+
+    try {
+      await AsyncStorage.setItem("cart", JSON.stringify(updatedCart));
+    } catch (error) {
+      console.error("Failed to update cart in local storage", error);
+    }
   };
 
   return (
@@ -22,6 +40,9 @@ const CartScreen = ({ route, navigation }) => {
       <View style={styles.headerContainer}>
         <Image source={Logo} />
         <Image source={Search} style={styles.searchIcon} />
+      </View>
+      <View style={styles.checkContainer}>
+        <Text style={styles.checkText}>Checkout</Text>
       </View>
       <FlatList
         data={cartItems}
@@ -36,16 +57,10 @@ const CartScreen = ({ route, navigation }) => {
             </View>
             <TouchableOpacity onPress={() => removeFromCart(item)} style={styles.removeIcon} >
             <Image source={remove}   />
-
             </TouchableOpacity>
-            {/* <Button title="Remove from Cart" onPress={() => removeFromCart(item)} /> */}
           </View>
         )}
       />
-      {/* <Button
-        title="Back to Home"
-        onPress={() => navigation.navigate("Home")}
-      /> */}
     </View>
   );
 };
@@ -58,18 +73,28 @@ const styles = StyleSheet.create({
   headerContainer: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    right: -10
   },
   searchIcon: {
     position: 'relative',
-    left: 135
+    left: 130
+  },
+  checkContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: 30,
+    marginBottom: 20
+  },
+  checkText: {
+    textTransform: 'uppercase',
+    textAlign: 'center',
+    fontSize: 24,
+    fontFamily: "Arial",
+    letterSpacing: 6,
   },
   product: {
-    // margin: 10,
     padding: 10,
-    // borderWidth: 1,
-    // borderColor: "#ddd",
-    // borderRadius: 5,
     alignItems: "center",
     flexDirection: "row",
   },

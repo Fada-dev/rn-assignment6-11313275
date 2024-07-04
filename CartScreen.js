@@ -4,7 +4,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import remove from './assets/remove.png';
 import Logo from './assets/Logo.png';
 import Search from './assets/Search.png';
-import underline from './assets/underline.png'
+import underline from './assets/underline.png';
+import shoppingB from './assets/shoppingB.png'
 
 const CartScreen = ({ route, navigation }) => {
   const { cart } = route.params;
@@ -64,6 +65,16 @@ const CartScreen = ({ route, navigation }) => {
           </View>
         )}
       />
+      <View style={styles.footer}>
+        <View style={styles.estTotal}>
+        <Text style={styles.totalRow}> EST. TOTAL</Text>
+        <Text style={styles.totalAmount}>$ 240</Text>
+        </View>
+        <View style={styles.footerCheckout}>
+        <Image source={shoppingB} style={styles.shopBag} />
+          <Text style={styles.checkName}>CHECKOUT</Text>
+        </View>
+      </View>
     </View>
   );
 };
@@ -71,13 +82,14 @@ const CartScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    // padding: 10,
   },
   headerContainer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
-    right: -10
+    right: -10,
+    marginTop: 10
   },
   searchIcon: {
     position: 'relative',
@@ -101,13 +113,14 @@ const styles = StyleSheet.create({
     height: 15,
     position: 'absolute',
     top: 28,
-    left: 95,
+    left: 104,
     opacity: 0.4
   },
   product: {
     padding: 10,
     alignItems: "center",
     flexDirection: "row",
+    marginLeft: 10
   },
   image: {
     objectFit: 'contain',
@@ -138,6 +151,39 @@ const styles = StyleSheet.create({
   removeIcon: {
     position: 'relative',
     top: 50,
+  },
+  estTotal: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginLeft: 10,
+    marginTop: 20
+  },
+  totalRow : {
+    fontSize: 20,
+    fontFamily: 'Arial'
+  },
+  totalAmount: {
+    fontSize: 20,
+    color: "#FFB668",
+    left: -10
+  },
+  footerCheckout: {
+    width: '100%',
+    height: 40,
+    backgroundColor: 'black',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row'
+  },
+  checkName: {
+    color: 'white',
+    fontSize: 16,
+    fontFamily: 'Arial'
+  },
+  shopBag: {
+    width: 18,
+    left: -15
   }
 });
 
